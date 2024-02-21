@@ -5,34 +5,21 @@
 export class Student {
   constructor(name) {
     this.name = name;
-    this.properties = [];
-    // this.gpa = 0;
+    this.properties = {
+      name: this.name
+    };
+
     // Property { label, value }[]
-    this.courses = [];
-    this.gradeScore = {
-        'A' : 5,
-        'B' : 4,
-        'C' : 3,
-        'D' : 2,
-        'E' : 1,
-        'F' : 0,
-    }
+
   }
   
 
   addProperty(label, value) {
-    this.properties.push({ label, value });
+    this.properties[label]= value;
   }
 
   getStudentData() {
-    const data = { 
-      name: this.name, 
-      age: this.age,
-    };
-    
-    for (let x of this.properties) {
-      data[x.label] = x.value;
-    }
+    const data = this.properties;
 
     return data;
   }
@@ -40,38 +27,5 @@ export class Student {
   getProperties() {
     console.log(this.properties);
   }
-
-  getGradeScore(grade){
-    grade = grade.toUpperCase()
-    for(let x in this.gradeScore){
-        if (x == grade){
-            return this.gradeScore[x]
-        }
-        
-    }
-    
-}
-
-addCourse(course, courseUnit, grade) {
-    grade = this.getGradeScore(grade)
-    this.courses.push({ course, courseUnit, grade });
-  
-}
-
-calculateGPA(){
-    let gradeSum = 0
-    let scoreSum = 0
-    for (let x of this.courses) {
-        gradeSum += x.grade * x.courseUnit
-        scoreSum += x.courseUnit
-    }
-    let gpa = gradeSum/scoreSum
-    this.addProperty('GPA', gpa)
-    // return gradeSum/scoreSum
-}
-
-showCourses(){
-    console.log(this.courses)
-}
 
 }
